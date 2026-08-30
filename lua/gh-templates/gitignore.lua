@@ -36,6 +36,12 @@ M.get_gitignore = function()
 
         local menu = Menu(ui.create_win_options("Gitignore Templates"), {
             lines = templates_names,
+            keymap = {
+                close = { "q", "<Esc>", "<C-c>" },
+            },
+            on_submit = function(item)
+                print("Template selected: ", item.text)
+            end,
         })
 
         menu:mount()
