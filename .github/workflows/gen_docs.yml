@@ -3,6 +3,7 @@ name: panvimdoc
 on:
   push:
     paths:
+      - ".github/workflows/gen_docs.yml"
       - "lua/**.lua"
       - "plugin/**.lua"
       - ".stylua.toml"
@@ -22,7 +23,7 @@ jobs:
 
       - uses: kdheepak/panvimdoc@main
         with:
-          vimdoc: ${{ github.event.repository.name }}
+          vimdoc: "gh-templates"
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
