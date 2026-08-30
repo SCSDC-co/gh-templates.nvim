@@ -1,6 +1,9 @@
+local gitignore = require("gh-templates.gitignore")
 local M = {}
 
-M.get_gitignores = function() end -- TODO: implement actual logic
+M.gitignore = function()
+    gitignore.get_template()
+end
 
 M.setup = function() end
 
