@@ -8,6 +8,8 @@ on:
       - ".stylua.toml"
       - "README.md"
 
+  workflow_dispatch:
+
 permissions:
   contents: write
 
