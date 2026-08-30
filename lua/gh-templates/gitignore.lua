@@ -5,18 +5,19 @@ local ui = require("gh-templates.ui")
 
 local M = {}
 
----@param callback fun(templates: string[] | string)
 ---@param url string
+---@param callback fun(templates: string[] | string)
 M.make_request = function(url, callback)
     vim.net.request(url, {}, function(err, res)
-        if err then
-            notify.error("An error occurred:\n" .. err)
+        vim.schedule(function()
+            if err then
+                notify.error("An error occurred:\n" .. err)
 
-            callback({})
-            return
-        end
+                return
+            end
 
-        callback(vim.json.decode(res.body))
+            callback(vim.json.decode(res.body))
+        end)
     end)
 end
 
