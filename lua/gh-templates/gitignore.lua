@@ -15,7 +15,7 @@ M.get_template = function()
         ---@type string[]
         local templates = vim.json.decode(res.body)
 
-        vim.print(templates)
+        print(templates)
     end)
 end
 
