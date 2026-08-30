@@ -59,7 +59,7 @@ return {
                 height = "auto",
             },
 
-            header = "Gitignore Templates",
+            header = " Gitignore Templates ",
             border = "rounded",
 
             relative = "editor",
@@ -76,7 +76,7 @@ return {
                 height = "auto",
             },
 
-            header = "License",
+            header = " License ",
             border = "rounded",
 
             relative = "editor",
