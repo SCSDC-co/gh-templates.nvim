@@ -1,4 +1,5 @@
 local gitignore = require("gh-templates.gitignore")
+local license = require("gh-templates.license")
 local utils = require("gh-templates.utils")
 local config = require("gh-templates.config")
 local notify = require("gh-templates.notify")
@@ -18,6 +19,10 @@ M.gitignore = function()
             end
         )
     end)
+end
+
+M.license = function()
+    license.get_license(function(template) end)
 end
 
 M.setup = function(opts)
