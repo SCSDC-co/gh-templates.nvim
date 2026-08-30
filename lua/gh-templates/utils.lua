@@ -2,12 +2,16 @@ local notify = require("gh-templates.notify")
 
 local M = {}
 
----@class TemplateResponse
+---@class GitignoreResponse
 ---@field name string
 ---@field source string
 
+---@class LicenseResponse
+---@field name string
+---@field body string
+
 ---@param url string
----@param callback fun(templates: string[] | TemplateResponse)
+---@param callback fun(templates: string[] | GitignoreResponse | LicenseResponse)
 M.make_request = function(url, callback)
     vim.net.request(url, {}, function(err, res)
         vim.schedule(function()

@@ -16,7 +16,7 @@ M.get_license_name = function(callback)
     utils.make_request("https://api.github.com/licenses", callback)
 end
 
----@param callback fun(template: string)
+---@param callback fun(url: string)
 M.get_license = function(callback)
     M.get_license_name(function(licenses)
         local licenses_names = {}
@@ -39,7 +39,7 @@ M.get_license = function(callback)
                 close = { "q", "<Esc>", "<C-c>" },
             },
             on_submit = function(item)
-                print(item.text .. " " .. item.url)
+                callback(item.url)
             end,
         })
 
