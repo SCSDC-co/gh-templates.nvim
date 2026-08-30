@@ -24,7 +24,7 @@ M.get_gitignore = function(callback)
                 close = { "q", "<Esc>", "<C-c>" },
             },
             on_submit = function(item)
-                callback(item)
+                callback(item.text)
             end,
         })
 
