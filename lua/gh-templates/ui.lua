@@ -6,6 +6,7 @@ local M = {}
 ---@param _height? integer
 M.create_win_options = function(text, _width, _height)
     local width = _width or string.len(text) + 4
+    local height = _height or "40%"
     local border_text = {
         top = " " .. text .. " ",
         top_align = "center",
@@ -16,7 +17,7 @@ M.create_win_options = function(text, _width, _height)
         position = "50%",
         size = {
             width = width,
-            height = _height,
+            height = height,
         },
         border = {
             style = "rounded",
