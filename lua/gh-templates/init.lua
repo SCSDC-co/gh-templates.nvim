@@ -1,4 +1,5 @@
 local gitignore = require("gh-templates.gitignore")
+
 local M = {}
 
 M.gitignore = function()

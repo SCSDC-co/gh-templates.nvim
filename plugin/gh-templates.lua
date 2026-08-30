@@ -1,7 +1,7 @@
 local gh_templates = require("gh-templates")
 
 vim.api.nvim_create_user_command("GhTemplates", function(opts)
-    if opts == "gitignore" then
+    if opts.args == "gitignore" then
         gh_templates.gitignore()
     end
 end, {
