@@ -21,17 +21,25 @@ M.get_license = function(callback)
     M.get_license_name(function(licenses)
         local licenses_names = {}
 
+        local width = #licenses[1].name
+
         for _, license in ipairs(licenses) do
             table.insert(licenses_names, Menu.item(license.name, { url = license.url }))
+
+            local length = #license.name
+
+            if length > width then
+                width = length
+            end
         end
 
-        local menu = Menu(ui.create_win_options("Gitignore Templates"), {
+        local menu = Menu(ui.create_win_options("License", width, #licenses_names), {
             lines = licenses_names,
             keymap = {
                 close = { "q", "<Esc>", "<C-c>" },
             },
             on_submit = function(item)
-                print(item.text .. " " .. item.data.url)
+                print(item.text .. " " .. item.url)
             end,
         })
 

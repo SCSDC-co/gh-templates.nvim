@@ -2,8 +2,10 @@ local M = {}
 
 ---@return table
 ---@param text string
-M.create_win_options = function(text)
-    local width = string.len(text) + 4
+---@param _width? integer
+---@param _height? integer
+M.create_win_options = function(text, _width, _height)
+    local width = _width or string.len(text) + 4
     local border_text = {
         top = " " .. text .. " ",
         top_align = "center",
@@ -12,7 +14,10 @@ M.create_win_options = function(text)
     return {
         relative = "editor",
         position = "50%",
-        size = width,
+        size = {
+            width = width,
+            height = _height,
+        },
         border = {
             style = "rounded",
             text = border_text,
