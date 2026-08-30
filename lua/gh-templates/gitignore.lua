@@ -1,32 +1,16 @@
 local Menu = require("nui.menu")
-local event = require("nui.utils.autocmd").event
-local notify = require("gh-templates.notify")
 local ui = require("gh-templates.ui")
+local utils = require("gh-templates.utils")
 
 local M = {}
 
----@param url string
----@param callback fun(templates: string[] | string)
-M.make_request = function(url, callback)
-    vim.net.request(url, {}, function(err, res)
-        vim.schedule(function()
-            if err then
-                notify.error("An error occurred:\n" .. err)
-
-                return
-            end
-
-            callback(vim.json.decode(res.body))
-        end)
-    end)
-end
-
 ---@param callback fun(templates: string[])
 M.get_templates = function(callback)
-    M.make_request("https://api.github.com/gitignore/templates", callback)
+    utils.make_request("https://api.github.com/gitignore/templates", callback)
 end
 
-M.get_gitignore = function()
+---@param callback fun(template: string)
+M.get_gitignore = function(callback)
     M.get_templates(function(templates)
         local templates_names = {}
 
@@ -40,7 +24,7 @@ M.get_gitignore = function()
                 close = { "q", "<Esc>", "<C-c>" },
             },
             on_submit = function(item)
-                print("Template selected: ", item.text)
+                callback(item)
             end,
         })
 
