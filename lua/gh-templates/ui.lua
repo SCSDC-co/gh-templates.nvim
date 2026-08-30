@@ -3,7 +3,7 @@ local M = {}
 ---@return table
 ---@param text string
 M.create_win_options = function(text)
-    local width = string.len(text) + 2
+    local width = string.len(text) + 4
     local border_text = {
         top = " " .. text .. " ",
         top_align = "center",
