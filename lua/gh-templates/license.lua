@@ -1,6 +1,6 @@
 local utils = require("gh-templates.utils")
 local Menu = require("nui.menu")
-local ui = require("gh-templates.ui")
+local config = require("gh-templates.config")
 
 local M = {}
 
@@ -21,22 +21,58 @@ M.get_license = function(callback)
     M.get_license_name(function(licenses)
         local licenses_names = {}
 
-        local width = #licenses[1].name
+        local _width
+        local _height
+
+        if config.license.panel.size.width ~= "auto" then
+            _width = config.license.panel.size.width
+        else
+            _width = #licenses[1].name
+        end
 
         for _, license in ipairs(licenses) do
             table.insert(licenses_names, Menu.item(license.name, { url = license.url }))
 
             local length = #license.name
 
-            if length > width then
-                width = length
+            if length > _width and config.license.panel.size.width == "auto" then
+                _width = length
             end
         end
 
-        local menu = Menu(ui.create_win_options("License", width, #licenses_names), {
+        if config.license.panel.size.height ~= "auto" then
+            _height = config.license.panel.size.height
+        else
+            _height = #licenses_names
+        end
+
+        local menu = Menu({
+            relative = config.license.panel.relative,
+            position = config.license.panel.position,
+
+            size = {
+                height = _height,
+                width = _width,
+            },
+
+            border = {
+                style = config.license.panel.border,
+
+                text = {
+                    top = config.license.panel.header,
+                },
+            },
+
+            win_options = {
+                winhighlight = config.winhighlight,
+            },
+        }, {
             lines = licenses_names,
             keymap = {
-                close = { "q", "<Esc>", "<C-c>" },
+                close = config.mappings.close,
+                submit = config.mappings.confirm,
+                focus_next = config.mappings.focus_next,
+                focus_prev = config.mappings.focus_prev,
             },
             on_submit = function(item)
                 callback(item.url)

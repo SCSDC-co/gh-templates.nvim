@@ -1,4 +1,5 @@
 local notify = require("gh-templates.notify")
+local config = require("gh-templates.config")
 
 local M = {}
 
@@ -43,7 +44,14 @@ end
 
 ---@param path string where to save the file
 ---@param content string the content of the file
-M.write_to_file = function(path, content)
+---@param append boolean
+M.write_to_file = function(path, content, append)
+    if append then
+        vim.fn.writefile(content, path, "a")
+
+        return
+    end
+
     vim.fn.writefile(content, path)
 end
 

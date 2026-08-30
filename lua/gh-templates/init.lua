@@ -11,10 +11,14 @@ M.gitignore = function()
         utils.make_request(
             "https://api.github.com/gitignore/templates/" .. template,
             function(gitignore_response)
-                utils.write_to_file(M.gitignore_file, gitignore_response.source)
+                utils.write_to_file(
+                    M.gitignore_file,
+                    gitignore_response.source,
+                    config.gitignore.append
+                )
 
                 notify.info(
-                    "Template " .. gitignore_response.name .. " saved to " .. M.gitignore_file
+                    "Template '" .. gitignore_response.name .. "' saved to " .. M.gitignore_file
                 )
             end
         )
@@ -25,9 +29,9 @@ M.license = function()
     license.get_license(function(url)
         ---@param _license LicenseResponse
         utils.make_request(url, function(_license)
-            utils.write_to_file(M.license_file, license.body)
+            utils.write_to_file(M.license_file, license.body, config.license.append)
 
-            notify.info("Template " .. _license.name .. " saved to " .. M.license_file)
+            notify.info("Template '" .. _license.name .. "' saved to " .. M.license_file)
         end)
     end)
 end
