@@ -12,15 +12,12 @@ A simple nvim plugin for getting the .gitignores and LICENSEs templates from git
 
 ## Requirements
 
-- Neovim 0.10 or newer
+- Neovim 0.12 or newer
 - `nui.nvim`
 
 ## Installation
 
 - Using [vim.pack](https://neovim.io/doc/user/pack/#vim.pack):
-
-> [!WARNING]
-> You need `nvim` 0.12 or above to use `vim.pack`
 
 ```lua
 vim.pack.add{
