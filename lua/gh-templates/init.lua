@@ -29,7 +29,7 @@ M.license = function()
     license.get_license(function(url)
         ---@param _license LicenseResponse
         utils.make_request(url, function(_license)
-            utils.write_to_file(M.license_file, license.body, config.license.append)
+            utils.write_to_file(M.license_file, _license.body, config.license.append)
 
             notify.info("Template '" .. _license.name .. "' saved to " .. M.license_file)
         end)
