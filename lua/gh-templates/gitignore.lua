@@ -1,6 +1,5 @@
 local Menu = require("nui.menu")
 local utils = require("gh-templates.utils")
-local config = require("gh-templates.config")
 
 local M = {}
 
@@ -10,7 +9,8 @@ M.get_templates = function(callback)
 end
 
 ---@param callback fun(template: string)
-M.get_gitignore = function(callback)
+---@param config GhTemplatesOpts
+M.get_gitignore = function(callback, config)
     M.get_templates(function(templates)
         local templates_names = {}
 

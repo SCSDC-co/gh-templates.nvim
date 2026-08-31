@@ -1,5 +1,4 @@
 local notify = require("gh-templates.notify")
-local config = require("gh-templates.config")
 
 local M = {}
 

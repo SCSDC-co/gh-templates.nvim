@@ -1,6 +1,5 @@
 local utils = require("gh-templates.utils")
 local Menu = require("nui.menu")
-local config = require("gh-templates.config")
 
 local M = {}
 
@@ -17,7 +16,8 @@ M.get_license_name = function(callback)
 end
 
 ---@param callback fun(url: string)
-M.get_license = function(callback)
+---@param config GhTemplatesOpts
+M.get_license = function(callback, config)
     M.get_license_name(function(licenses)
         local licenses_names = {}
 
