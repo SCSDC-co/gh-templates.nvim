@@ -14,7 +14,7 @@ M.gitignore = function()
                 utils.write_to_file(
                     M.gitignore_file,
                     gitignore_response.source,
-                    M.opts.license.append
+                    M.opts.gitignore.append
                 )
 
                 notify.info(
